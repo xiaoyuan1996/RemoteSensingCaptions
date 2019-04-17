@@ -1,5 +1,5 @@
 1.put resnet_v1_50.ckpt and vgg16.npy here.
-2.put Sydney in /train/images and UCM in dataset in UCM_Captions.
+2.use images dir replace /train/images and UCM_Captions replace /UCM_Captions.
 3.run main.py
 
 
