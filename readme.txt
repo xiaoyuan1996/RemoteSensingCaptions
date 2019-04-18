@@ -1,3 +1,13 @@
+This repository is used for remote sensing captions based on the "Encoder-Decoder" with attention, and here has some data analysis module. 
+
+Parameter:
+CNN: VGGNet , ResNet
+LSTM: with attention
+Dataset: Sydney, UCM
+
+
+
+Use Step:
 1.download zip from link bottom ,then unzip.
 链接：https://pan.baidu.com/s/1H95ZBvhZToSeL35mii_3wg   提取码：gtua 
 
