@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 
 from base_model import BaseModel
-from config import Config
+
 
 class CaptionGenerator(BaseModel):
     def build(self):
@@ -54,6 +54,29 @@ class CaptionGenerator(BaseModel):
 
         reshaped_conv5_3_feats = tf.reshape(conv5_3_feats,
                                             [config.batch_size, 196, 512])
+        if config.bn:
+            # Batch Normalize
+            fc_mean, fc_var = tf.nn.moments(
+                reshaped_conv5_3_feats,
+                axes=[0, 1, 2],   # the dimension you wanna normalize, here [0] for batch
+                            # for image, you wanna do [0, 1, 2] for [batch, height, width] but not channel
+            )
+            scale = tf.Variable(tf.ones([config.batch_size, 196, 512]))
+            shift = tf.Variable(tf.zeros([config.batch_size, 196, 512]))
+            epsilon = 0.001
+
+            # apply moving average for mean and var when train on batch
+            ema = tf.train.ExponentialMovingAverage(decay=0.5)
+            def mean_var_with_update():
+                ema_apply_op = ema.apply([fc_mean, fc_var])
+                with tf.control_dependencies([ema_apply_op]):
+                    return tf.identity(fc_mean), tf.identity(fc_var)
+            mean, var = mean_var_with_update()
+
+            reshaped_conv5_3_feats = tf.nn.batch_normalization(reshaped_conv5_3_feats, mean, var, shift, scale, epsilon)
+            # similar with this two steps:
+            # Wx_plus_b = (Wx_plus_b - fc_mean) / tf.sqrt(fc_var + 0.001)
+            # Wx_plus_b = Wx_plus_b * scale + shift
 
         self.conv_feats = reshaped_conv5_3_feats
         self.num_ctx = 196
@@ -103,6 +126,26 @@ class CaptionGenerator(BaseModel):
 
         reshaped_res5c_feats = tf.reshape(res5c_feats,
                                          [config.batch_size, 49, 2048])
+        if config.bn:
+            # Batch Normalize
+            fc_mean, fc_var = tf.nn.moments(
+                reshaped_res5c_feats,
+                axes=[0, 1, 2],   # the dimension you wanna normalize, here [0] for batch
+                            # for image, you wanna do [0, 1, 2] for [batch, height, width] but not channel
+            )
+            scale = tf.Variable(tf.ones([config.batch_size, 49, 2048]))
+            shift = tf.Variable(tf.zeros([config.batch_size, 49, 2048]))
+            epsilon = 0.001
+
+            # apply moving average for mean and var when train on batch
+            ema = tf.train.ExponentialMovingAverage(decay=0.5)
+            def mean_var_with_update():
+                ema_apply_op = ema.apply([fc_mean, fc_var])
+                with tf.control_dependencies([ema_apply_op]):
+                    return tf.identity(fc_mean), tf.identity(fc_var)
+            mean, var = mean_var_with_update()
+
+            reshaped_res5c_feats = tf.nn.batch_normalization(reshaped_res5c_feats, mean, var, shift, scale, epsilon)
 
         self.conv_feats = reshaped_res5c_feats
         self.num_ctx = 49
