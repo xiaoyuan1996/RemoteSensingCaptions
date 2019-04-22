@@ -14,6 +14,7 @@ class Config(object):
         self.dim_attend_layer = 512
         self.num_decode_layers = 2       # 1 or 2
         self.dim_decode_layer = 1024
+        self.bn = True
 
         # about the weight initialization and regularization
         self.fc_kernel_initializer_scale = 0.08
