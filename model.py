@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 
 from base_model import BaseModel
-
+from config import Config
 
 class CaptionGenerator(BaseModel):
     def build(self):
@@ -54,6 +54,7 @@ class CaptionGenerator(BaseModel):
 
         reshaped_conv5_3_feats = tf.reshape(conv5_3_feats,
                                             [config.batch_size, 196, 512])
+
         if config.bn:
             # Batch Normalize
             fc_mean, fc_var = tf.nn.moments(
@@ -77,6 +78,7 @@ class CaptionGenerator(BaseModel):
             # similar with this two steps:
             # Wx_plus_b = (Wx_plus_b - fc_mean) / tf.sqrt(fc_var + 0.001)
             # Wx_plus_b = Wx_plus_b * scale + shift
+
 
         self.conv_feats = reshaped_conv5_3_feats
         self.num_ctx = 196
@@ -375,7 +377,10 @@ class CaptionGenerator(BaseModel):
 
             reg_loss = tf.losses.get_regularization_loss()
 
-            total_loss = cross_entropy_loss + attention_loss + reg_loss
+            if config.with_attention:
+                total_loss = cross_entropy_loss + attention_loss + reg_loss
+            else:
+                total_loss = cross_entropy_loss + reg_loss
 
             predictions_correct = tf.stack(predictions_correct, axis = 1)
             accuracy = tf.reduce_sum(predictions_correct) \
@@ -494,7 +499,10 @@ class CaptionGenerator(BaseModel):
                                    use_bias = False,
                                    name = 'fc_2')
             logits = tf.reshape(logits, [-1, self.num_ctx])
-        alpha = tf.nn.softmax(logits)
+        if config.with_attention:
+            alpha = tf.nn.softmax(logits)
+        else:
+            alpha = tf.Variable(tf.ones([1, self.num_ctx]))
         self.alpha = alpha
         return alpha
 
