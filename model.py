@@ -502,7 +502,7 @@ class CaptionGenerator(BaseModel):
         if config.with_attention:
             alpha = tf.nn.softmax(logits)
         else:
-            alpha = tf.Variable(tf.ones([1, self.num_ctx]))
+            alpha = tf.Variable(tf.ones([1, self.num_ctx])/self.num_ctx)
         self.alpha = alpha
         return alpha
 
