@@ -23,14 +23,14 @@ index created!
 tokenization...
 setting up scorers...
 computing Bleu score...
-{'guess': [750, 692, 634, 576], 'correct': [566, 406, 286, 198], 'reflen': 724, 'testlen': 750}
-ratio: 1.035911602208514
-Bleu_1: 0.755
-Bleu_2: 0.665
-Bleu_3: 0.585
-Bleu_4: 0.512
+{'testlen': 735, 'correct': [580, 428, 302, 207], 'guess': [735, 677, 619, 561], 'reflen': 718}
+ratio: 1.0236768802214156
+Bleu_1: 0.789
+Bleu_2: 0.706
+Bleu_3: 0.624
+Bleu_4: 0.547
 computing Rouge score...
-ROUGE_L: 0.683
+ROUGE_L: 0.708
 computing CIDEr score...
-CIDEr: 1.933
+CIDEr: 2.169
 Evaluation complete.

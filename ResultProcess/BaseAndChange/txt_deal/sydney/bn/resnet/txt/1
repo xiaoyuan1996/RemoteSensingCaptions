@@ -1,6 +1,6 @@
 0.npy
 loading annotations into memory...
-Done (t=0.00s)
+Done (t=0.01s)
 creating index...
 index created!
 Building the vocabulary...
@@ -23,14 +23,14 @@ index created!
 tokenization...
 setting up scorers...
 computing Bleu score...
-{'correct': [163, 90, 50, 17], 'guess': [218, 160, 104, 52], 'testlen': 218, 'reflen': 577}
-ratio: 0.37781629116052373
-Bleu_1: 0.144
-Bleu_2: 0.125
-Bleu_3: 0.113
-Bleu_4: 0.098
+{'correct': [301, 192, 114, 57], 'testlen': 370, 'reflen': 576, 'guess': [370, 312, 254, 196]}
+ratio: 0.6423611111099959
+Bleu_1: 0.466
+Bleu_2: 0.405
+Bleu_3: 0.348
+Bleu_4: 0.290
 computing Rouge score...
-ROUGE_L: 0.356
+ROUGE_L: 0.529
 computing CIDEr score...
-CIDEr: 0.552
+CIDEr: 1.046
 Evaluation complete.
