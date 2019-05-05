@@ -1,5 +1,11 @@
 This repository is used for remote sensing captions based on the "Encoder-Decoder" with attention, and here has some data analysis module. 
 
+Envirment:
+Python: 3.5
+TensorFlow: 1.4.1
+cuda: 8.0
+
+
 Parameter:
 CNN: VGGNet , ResNet
 LSTM: with attention
