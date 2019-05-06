@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 
-dir_name = "./ucm/ft/resnet/"
+dir_name = "./sydney/wt/vgg/"
+# dir_name = "./test/"
 sub_dir = "txt"
 i = 1
 f = open(dir_name+sub_dir+'/{}'.format(i), 'rt')
@@ -38,6 +39,11 @@ for i in range(1, 101):
 
     A.append(line)
 A = np.array(A)
+
+A = A[np.lexsort(-A.T)]
+print("Name   	CIDER	 ROUGE_L	Bleu_4	 Bleu_3	Bleu_2	 Bleu_1	sum")
+print(A[0])
+
 A = pd.DataFrame(A)
 
 A.columns = ['Name','CIDER','ROUGE_L','Bleu_4','Bleu_3','Bleu_2','Bleu_1','sum']
