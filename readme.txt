@@ -44,4 +44,4 @@ main.py             main coding of this project
 model.py            construct the network
 resnet_v1_50.ckpt   this is a pretend model parameter of 50 layers resnet
 vgg16.npy           this is a pretend model parameter of 16 layers VGGNet
-vocabulary.csv      vocabulary saved by coding, if you want to change the dataset you should delete this at first and let codes produce another one
+vocabulary.csv      vocabulary saved by coding, if you want to change the dataset you should delete this at first and let codes produce another
