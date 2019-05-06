@@ -5,6 +5,9 @@ Python: 3.5
 TensorFlow: 1.4.1
 cuda: 8.0
 
+Library：
+JAVA, pandas, numpy, tqdm, nltk, matlibplot, tensorflow, pickle, json, random
+
 Parameter:
 CNN: VGGNet , ResNet
 LSTM: with attention , no attention
