@@ -1,1 +1,5 @@
-The trained models will be saved here.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+                            Coding Instruction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+***************                   file                  **********************
+*.npy           these npy file is saved by coding after every epoch, you can load these file by main.py

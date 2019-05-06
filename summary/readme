@@ -1,1 +1,5 @@
-The summary (for TensorBoard visualization) will be saved here.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+                            Coding Instruction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+***************                   file                  **********************
+events.out.tfevents.1552560760      you can use cmd to load this file with tensorboard

@@ -4,7 +4,7 @@ class Config(object):
     def __init__(self):
         # about the model architecture
         self.cnn = 'vgg16'               # 'vgg16' or 'resnet50'
-        # self.cnn = 'resnet50'
+        #self.cnn = 'resnet50'
         self.max_caption_length = 20
         self.dim_embedding = 512
         self.num_lstm_units = 512
@@ -14,7 +14,7 @@ class Config(object):
         self.dim_attend_layer = 512
         self.num_decode_layers = 2       # 1 or 2
         self.dim_decode_layer = 1024
-        self.bn = True
+        self.bn = False
         self.with_attention = False
 
         # about the weight initialization and regularization
@@ -28,8 +28,8 @@ class Config(object):
         self.attention_loss_factor = 0.01
 
         # about the optimization
-        self.num_epochs = 1
-        self.batch_size = 10
+        self.num_epochs = 50
+        self.batch_size = 15
         self.optimizer = 'Adam'    # 'Adam', 'RMSProp', 'Momentum' or 'SGD'
         self.initial_learning_rate = 0.0001
         self.learning_rate_decay_factor = 1.0
@@ -54,17 +54,17 @@ class Config(object):
         self.vocabulary_file = './vocabulary.csv'
         self.vocabulary_size = 210
         # about the training
-        self.train_image_dir = './train/images/'
-        self.train_caption_file = './train/captions_train2014.json'#这个地方需要改变路径
-        self.temp_annotation_file = './train/anns.csv'
-        self.temp_data_file = './train/data.npy'
+        self.train_image_dir = './data/sydney/images/'
+        self.train_caption_file = './data/sydney/captions_train2014.json'#这个地方需要改变路径
+        self.temp_annotation_file = './data/sydney/anns.csv'
+        self.temp_data_file = './data/sydney/data.npy'
 
         # about the evaluation
-        self.eval_image_dir = './train/images/'
-        self.eval_caption_file = './data_val_coco.json'
+        self.eval_image_dir = './data/sydney/images/'
+        self.eval_caption_file = './data/sydney/data_val_coco.json'
         self.eval_result_dir = './val/results/'
         self.eval_result_file = './val/results.json'
-        self.save_eval_result_as_image = True
+        self.save_eval_result_as_image = False
 
 
 
@@ -74,14 +74,14 @@ class Config(object):
         # self.vocabulary_size = 280
         #
         # # about the training
-        # self.train_image_dir = './UCM_Captions/imgs/'
-        # self.train_caption_file = './UCM_Captions/data_train_UCM.json'#这个地方需要改变路径
-        # self.temp_annotation_file = './UCM_Captions/anns.csv'
-        # self.temp_data_file = './UCM_Captions/data.npy'
+        # self.train_image_dir = './data/UCM_Captions/imgs/'
+        # self.train_caption_file = './data//UCM_Captions/data_train_UCM.json'#这个地方需要改变路径
+        # self.temp_annotation_file = './data/UCM_Captions/anns.csv'
+        # self.temp_data_file = './data/UCM_Captions/data.npy'
         #
         # # about the evaluation
-        # self.eval_image_dir = './UCM_Captions/imgs/'
-        # self.eval_caption_file = './UCM_Captions/data_val_UCM.json'
+        # self.eval_image_dir = './data/UCM_Captions/imgs/'
+        # self.eval_caption_file = './data/UCM_Captions/data_val_UCM.json'
         # self.eval_result_dir = './val/results/'
         # self.eval_result_file = './val/results.json'
         # self.save_eval_result_as_image = False
